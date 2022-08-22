@@ -1,0 +1,15 @@
+# config/sylius/routes/backend/article.yaml
+app_backend_ass:
+  resource: |
+    alias: app.ass
+    section: backend
+    except: ['show']
+    redirect: update
+    grid: app_backend_ass
+    vars:
+        all:
+            subheader: app.ui.manage_ass
+        index:
+            icon: newspaper
+    templates: backend/crud
+  type: sylius.resource
