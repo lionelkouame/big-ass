@@ -20,6 +20,7 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
 
         $this->addCustomerSubMenu($menu);
         $this->addConfigurationSubMenu($menu);
+        $this->addActionSubMenu($menu);
 
         return $menu;
     }
@@ -34,6 +35,17 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
         $customer->addChild('backend_customer', ['route' => 'sylius_backend_customer_index'])
             ->setLabel('sylius.ui.customers')
             ->setLabelAttribute('icon', 'users');
+    }
+    private function addActionSubMenu(ItemInterface $menu): void
+    {
+        $action = $menu
+            ->addChild('action')
+            ->setLabel('sylius.ui.action')
+        ;
+
+        $action->addChild('backend_admin_asses', ['route' => 'app_backend_ass_index'])
+            ->setLabel('sylius.ui.actions')
+            ->setLabelAttribute('icon', 'lock');
     }
 
     private function addConfigurationSubMenu(ItemInterface $menu): void

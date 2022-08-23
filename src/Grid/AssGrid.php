@@ -47,6 +47,22 @@ class AssGrid extends AbstractGrid implements ResourceAwareGridInterface
                     ->setLabel('app.ui.description')
                     ->setSortable(true)
             )
+            ->addActionGroup(
+                MainActionGroup::create(
+                    CreateAction::create(),
+                )
+            )
+            ->addActionGroup(
+                ItemActionGroup::create(
+                    UpdateAction::create(),
+                    DeleteAction::create(),
+                )
+            )
+            ->addActionGroup(
+                BulkActionGroup::create(
+                    DeleteAction::create()
+                )
+            )
 
         ;
 
