@@ -237,6 +237,9 @@ jobs:
                 name: Test installer
                 run: bin/console app:install --no-interaction -vvv
 
+            -   name: update force database
+                run:  bin/console d:s:u --force --no-interaction
+
             -
                 name: Load fixtures
                 run: bin/console doctrine:fixtures:load --no-interaction
