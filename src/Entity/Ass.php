@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -22,6 +24,14 @@ class Ass implements ResourceInterface
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     protected ?string $description = null;
+
+    #[ORM\ManyToMany(targetEntity: Challenge::class, mappedBy: 'asses')]
+    private Collection $challenges;
+
+    public function __construct()
+    {
+        $this->challenges = new ArrayCollection();
+    }
 
     public function getAction(): ?string
     {
@@ -55,6 +65,33 @@ class Ass implements ResourceInterface
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Challenge>
+     */
+    public function getChallenges(): Collection
+    {
+        return $this->challenges;
+    }
+
+    public function addChallenge(Challenge $challenge): self
+    {
+        if (!$this->challenges->contains($challenge)) {
+            $this->challenges->add($challenge);
+            $challenge->addAss($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChallenge(Challenge $challenge): self
+    {
+        if ($this->challenges->removeElement($challenge)) {
+            $challenge->removeAss($this);
+        }
 
         return $this;
     }

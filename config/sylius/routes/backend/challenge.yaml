@@ -1,0 +1,15 @@
+# config/sylius/routes/backend/article.yaml
+app_backend_challenge:
+  resource: |
+    alias: app.challenge
+    section: backend
+    except: ['show']
+    redirect: update
+    grid: app_backend_challenge
+    vars:
+        all:
+            subheader: app.ui.manage_challenge
+        index:
+            icon: newspaper
+    templates: backend/crud
+  type: sylius.resource
