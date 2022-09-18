@@ -3,3 +3,6 @@ sylius_resource:
         app.ass:
             classes:
                 model: App\Entity\Ass
+        app.challenge:
+            classes:
+                model: App\Entity\Challenge
