@@ -43,6 +43,10 @@ final class AdminMenuBuilder implements AdminMenuBuilderInterface
             ->setLabel('sylius.ui.action')
         ;
 
+        $action->addChild('backend_admin_challenges', ['route' => 'app_backend_challenge_index'])
+            ->setLabel('sylius.ui.challenges')
+            ->setLabelAttribute('icon', 'lock');
+
         $action->addChild('backend_admin_asses', ['route' => 'app_backend_ass_index'])
             ->setLabel('sylius.ui.actions')
             ->setLabelAttribute('icon', 'lock');

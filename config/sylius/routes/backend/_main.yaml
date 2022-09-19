@@ -19,3 +19,6 @@ sylius_backend_security:
 
 app_backend_ass:
     resource: "ass.yaml"
+
+app_backend_chellenge:
+    resource: "challenge.yaml"
